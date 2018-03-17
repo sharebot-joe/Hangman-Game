@@ -1,11 +1,15 @@
-
-var randomLetter = '';
-var wins = 0;
-var losses = 0;
-var guessesLeft = 9;
-
 $(document).ready(function() {
 
+	var secretWord = '';
+	var wins = 0;
+	var losses = 0;
+	var guessesLeft = 9;
+	var pokemon = {
+		pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
+		pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
+	  pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
+    pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
+  }
 	//Board Setup
 	$('.wins').append(wins);
 	$('.losses').append(losses);
