@@ -1,0 +1,115 @@
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	background: repeating-radial-gradient(circle farthest-corner, #DB2A24 12.5%, #FFF506 37.5%, #7B8DCF 62.5%, #FFF506 87.5%, #DB2A24) fixed;
+}
+html {
+	font-size: 16px;
+}
+h1, h2, h3, p {
+	color: #fff;
+}
+h3 {
+	font-size: 1.3rem;
+}
+.row:first-of-type {
+	height: 180px;
+}
+
+.logocontainer {
+	width: 380px;
+	height: 210px;
+	background: url('../images/burst.png')  no-repeat  center/100% 50%;
+	position: absolute;
+	top: -20px;
+	left: 0;
+right: 0;
+margin: auto
+}
+.superlogo {
+	position: absolute;
+	top: 35%;
+	left: -14%;
+	color: #FFFE31;
+  -webkit-text-fill-color: #FFFE31; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: black;
+  paint-order: stroke;
+	font-family: 'Oswald', sans-serif;
+	font-size: 2.8rem;
+	
+}
+.smashlogo {
+	display: inline;
+	position: relative;
+	line-height: 220px;
+	color: #FFD500;
+  -webkit-text-fill-color: #FFD500; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: #E91106;
+  paint-order: stroke;
+  font-family: 'Bowlby One SC';
+	font-size: 3.5rem;
+}
+.hangmangamelogo {
+/*	display: inline;*/
+	position: absolute;
+	top: 35%;
+	right: -30%;
+	font-family: 'Creepster';
+	color: white;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+	font-size: 3rem;
+}
+.card {
+	background: none;
+	border: none;
+}
+.card-block {
+	margin: 0 auto;
+	padding: 15px;
+	width: 400px;
+  background-color: rgba(0,0,0,0.7);
+  border-style: ridge;
+  border-color: rgba(0, 0, 255, 0.6);
+  border-width: 10px;  
+ 
+}
+.card:nth-child(2) .card-block>* {
+	/*height: 40px;*/
+	/*border: 1px solid green;*/
+}
+.value {
+	display: inline-block;
+	height: 30px;
+	background:#fff;
+	font-weight: bold;
+}
+.gameboard {
+	background: none;
+}
+.gameboard div {
+	width: 1.17rem;
+	height: 24px;
+	display: inline-block;
+	position: relative;
+	margin: 0 5px;
+	padding: 0 5px;
+	background:#fff;
+	font-family: consolas, monospace;
+	font-weight: bold;
+}
+.hyphens div {
+	display: inline-block;
+	position: relative;
+	/*left: 30px;*/
+	margin: 0 5px;
+	padding: 0 5px;
+	background:#fff;
+	font-family: consolas, monospace;
+	font-weight: bold;
+}

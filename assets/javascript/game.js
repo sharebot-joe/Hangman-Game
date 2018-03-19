@@ -1,65 +1,136 @@
 $(document).ready(function() {
 
-	var secretWord = '';
 	var wins = 0;
-	var losses = 0;
-	var guessesLeft = 9;
-	var pokemon = {
-		pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
-		pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
-	  pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
-    pokemonName = ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
-  }
-	//Board Setup
-	$('.wins').append(wins);
-	$('.losses').append(losses);
-	$('.guesses-left').append(guessesLeft);
-	$('.random-letter').append(randomLetter);
+	var guessesLeft = '';
+	var lettersGuessed = '';
+	var lettersMissed = '';
+	var secretBro = '';
+	var secretBroLetters = '';
+	
 
-	pickRandomLetter();
-
-  	function pickRandomLetter() {
-		var chars = "abcdefghiklmnopqrstuvwxyz";
-		var rnum = Math.floor(Math.random() * chars.length);
-		randomLetter = chars[rnum];
-
-		// Toggle displaying random letter
-		// $('.random-letter').html(randomLetter);   
-
+	var bros = {
+		broName : ['Pikachu', 'Samus', 'Mario'],
+		broSong : ['iYyDbVUWgTI', 'Ky-eaH9C1l0', '8QLGlbJA7C0'],
+		broImage : ['assets/images/Pikachu.png', 'assets/images/samus.png', 'assets/images/mario.png'],
+		broTagline : ['Pika!', 'Try me!', 'Ohhhh. Mamma Mia!']
+		// broName : ['Pikachu', 'Samus', 'Mario', 'Luigi', 'Jigglypuff', 'Yoshi', 'Kirby', 'Mewtwo', 'Ganondorf', 'Zelda'],	
+		// //values are URL endings for Youtube links.
+		// broSong : ['iYyDbVUWgTI', 'Ky-eaH9C1l0', '8QLGlbJA7C0', 'EfVP9iWgbZ4', '4tQSIaGFdRg', 'nghTrcPBp3s', '3CS93CdMv_E', 'Plw8glq02V0', 'gmL3xSeAmsw', 'cGufy1PAeTU'],
+	 //  broImage : ['assets/images/Pikachu.png', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde'],
+  //   broTagline : ['Arceus', 'Charizard', 'Greninja', 'Jirachi', 'Keldeo', 'Lucario', 'Pikachu', 'Reshiram', 'Shaymin', 'Zygarde']
+  };
+  function randomBro () {
+	  secretBro = bros.broName[Math.floor(Math.random() * bros.broName.length)];
+	  secretBroLetters = secretBro.toLowerCase();
 	}
-	function updateLoss() {
-		losses++
-		guessesLeft = 9
-		$('.losses').html(losses);
+	function resetBoard () {
+		guessesLeft = 13;
 		$('.guesses-left').html(guessesLeft);
+		lettersGuessed = '';
+		lettersMissed = '';
 		$('.your-guesses').empty();
-		pickRandomLetter()
+		
+		randomBro();	
+		changeImage();
+		changeTagline();
+		// playSong();
+		
+		displayGameboard();
+		console.log("The board is reset!");
 	}
-	function updateWin() {
-		wins++;
-		guessesLeft = 9
-		$('.wins').html(wins);
-		$('.guesses-left').html(guessesLeft);
-		$('.your-guesses').html('');
-		pickRandomLetter()
+	function changeImage() {
+		var index = bros.broName.indexOf(secretBro);
+		$("#bro-image").attr("src",bros.broImage[index]);
 	}
-	//Key Press Event Listener
-	document.onkeyup = function(event) {
+	function changeTagline() {
+		var index = bros.broName.indexOf(secretBro);
+		$(".tagline").html(bros.broTagline[index]);
+	}
+	function displayGameboard () {
+		$(".gameboard").empty();
+		for (var i = 0; i < secretBro.length; i++) {
+		  $(".gameboard").append("<div class=" + i + "></div>");
+		}
+		$(".hyphens").empty();
+		for (var i = 0; i < secretBro.length; i++) {
+		  $(".hyphens").append("<div>-</div>");
+		}
+	}
 
-    // Captures the key press, converts it to lowercase, and saves it to a variable.
-    	var letter = String.fromCharCode(event.which).toLowerCase();
+	function checkForLoss() {
+		if (guessesLeft === 1) {
+			resetBoard();
+		}
+	}
+	function checkForWin () {
+		if ( RegExp("!/[^a-z]/").test(secretBroLetters)) {
+			wins++;
+			$('.wins').html(wins);
+			resetBoard();
+		}
+	}
 
-    	if (letter === randomLetter) {
-    		updateWin()
-    	} else {
-    		if (guessesLeft > 1) {
-				guessesLeft--;
-				$('.guesses-left').html(guessesLeft);
-				$('.your-guesses').append(letter + '\ ');
-    		} else  {
-    			updateLoss()
-			}
-    	}
-    };
+	//Setting initial gameboard
+	$('.wins').html(wins);
+	$('.guesses-left').html('13');
+	// $('.your-guesses').html('');
+	console.log("Hi there buddy!");
+
+	//Start Game on key press - runs only once
+	$('body').one("keyup", function() {
+	  resetBoard();
+	});
+	//Start Game on key press - runs only once
+	$('body').on("keyup", function() {
+	  var letter = String.fromCharCode(event.which).toLowerCase();
+	  console.log(letter)
+	  var chars = "abcdefghijklmnopqrstuvwxyz";
+  	var letterPressed = chars.includes(letter);
+  	var letterRepeated = lettersGuessed.includes(letter);
+  	var letterInSecret = secretBroLetters.includes(letter);
+		
+
+		//When user hits an alphabet letter not repeated
+	  if (letterPressed && !letterRepeated) {
+	  	
+	  	// When user hits a letter contained in the secret word
+	  	if (letterInSecret) {
+	  		
+	  		for (var i = 0; i < secretBroLetters.length; i++) {
+
+				  if (letter === secretBroLetters.charAt(i)) {
+				  	// $( "input[id][name$='man']" ).val( "only this one" );\
+				  	$(".gameboard ." + i).html(letter.toUpperCase())
+
+				  	// Important to set global variables using equal sign for global methods
+				  	// matchedLetters = matchedLetters.append(letter)
+				  	secretBroLetters = secretBroLetters.replace(letter, "*")
+				  	lettersGuessed += letter
+
+				  	console.log(secretBroLetters)
+				  	console.log(lettersGuessed)
+				  	// checkForWin();
+				  }
+				  
+				}
+
+	  	} 
+	  	if (!letterInSecret) {	// When user hits a wrong letter
+	
+	  		console.log(letterInSecret)
+	  		checkForLoss();
+	  		guessesLeft--;
+		  	$('.guesses-left').html(guessesLeft);
+				lettersGuessed += letter
+	  		lettersMissed = lettersMissed + letter;
+	  		console.log(lettersMissed)
+	  		$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
+
+
+		  		
+	  	}
+	  	console.log(secretBroLetters)
+  	};
+	});
 
 });	
