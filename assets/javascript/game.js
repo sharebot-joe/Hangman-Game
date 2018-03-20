@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var lettersMissed = '';
 	var secretBro = '';
 	var secretBroLetters = '';
-	
+	var keypresses = 0;
 
 	var bros = {
 		broName : ['Pikachu', 'Samus', 'Mario'],
@@ -63,7 +63,16 @@ $(document).ready(function() {
 		}
 	}
 	function checkForWin () {
-		if ( RegExp("!/[^a-z]/").test(secretBroLetters)) {
+		var matches = 0;
+		for (var i = 0; i < secretBroLetters.length; i++) {
+			// if (!/[^a-z]+$/.test(secretBroLetters)) {
+			// }
+			if (/[^\*]/.test(secretBroLetters[i])) {
+				matches++;
+			}
+		}
+		console.log(matches)
+		if (matches === secretBroLetters.length) {
 			wins++;
 			$('.wins').html(wins);
 			resetBoard();
@@ -79,57 +88,60 @@ $(document).ready(function() {
 	//Start Game on key press - runs only once
 	$('body').one("keyup", function() {
 	  resetBoard();
+	  keypresses++
+
 	});
-	//Start Game on key press - runs only once
+	//Subsequent key presses play the game
 	$('body').on("keyup", function() {
-	  var letter = String.fromCharCode(event.which).toLowerCase();
-	  console.log(letter)
-	  var chars = "abcdefghijklmnopqrstuvwxyz";
-  	var letterPressed = chars.includes(letter);
-  	var letterRepeated = lettersGuessed.includes(letter);
-  	var letterInSecret = secretBroLetters.includes(letter);
-		
+    console.log(keypresses)
+		if (keypresses > 0) {
 
-		//When user hits an alphabet letter not repeated
-	  if (letterPressed && !letterRepeated) {
-	  	
-	  	// When user hits a letter contained in the secret word
-	  	if (letterInSecret) {
-	  		
-	  		for (var i = 0; i < secretBroLetters.length; i++) {
-
-				  if (letter === secretBroLetters.charAt(i)) {
-				  	// $( "input[id][name$='man']" ).val( "only this one" );\
-				  	$(".gameboard ." + i).html(letter.toUpperCase())
-
-				  	// Important to set global variables using equal sign for global methods
-				  	// matchedLetters = matchedLetters.append(letter)
-				  	secretBroLetters = secretBroLetters.replace(letter, "*")
-				  	lettersGuessed += letter
-
-				  	console.log(secretBroLetters)
-				  	console.log(lettersGuessed)
-				  	// checkForWin();
-				  }
-				  
-				}
-
-	  	} 
-	  	if (!letterInSecret) {	// When user hits a wrong letter
+			var letter = String.fromCharCode(event.which).toLowerCase();
+		  console.log(letter)
+		  var chars = "abcdefghijklmnopqrstuvwxyz";
+	  	var letterPressed = chars.includes(letter);
+	  	var letterRepeated = lettersGuessed.includes(letter);
+	  	var letterInSecret = secretBroLetters.includes(letter);
 	
-	  		console.log(letterInSecret)
-	  		checkForLoss();
-	  		guessesLeft--;
-		  	$('.guesses-left').html(guessesLeft);
-				lettersGuessed += letter
-	  		lettersMissed = lettersMissed + letter;
-	  		console.log(lettersMissed)
-	  		$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
-
-
+			//When user hits an alphabet letter not repeated
+		  if (letterPressed && !letterRepeated) {
+		  	
+		  	// When user hits a letter contained in the secret word
+		  	if (letterInSecret) {
 		  		
-	  	}
-	  	console.log(secretBroLetters)
+		  		for (var i = 0; i < secretBroLetters.length; i++) {
+
+					  if (letter === secretBroLetters.charAt(i)) {
+					  	// $( "input[id][name$='man']" ).val( "only this one" );\
+					  	$(".gameboard ." + i).html(letter.toUpperCase())
+
+					  	// Important to set global variables using equal sign for global methods
+					  	// matchedLetters = matchedLetters.append(letter)
+					  	secretBroLetters = secretBroLetters.replace(letter, "*")
+					  	lettersGuessed += letter
+							checkForWin();	
+					  	console.log(secretBroLetters)
+					  	console.log(lettersGuessed)
+		
+					  }
+					  
+					}
+
+		  	}
+		  	if (!letterInSecret) {	// When user hits a wrong letter
+		
+		  		console.log(letterInSecret)
+		  		checkForLoss();
+		  		guessesLeft--;
+			  	$('.guesses-left').html(guessesLeft);
+					lettersGuessed += letter
+		  		lettersMissed = lettersMissed + letter;
+		  		console.log(lettersMissed)
+		  		$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
+
+		  	}
+		  	console.log(secretBroLetters)
+			}	  
   	};
 	});
 
