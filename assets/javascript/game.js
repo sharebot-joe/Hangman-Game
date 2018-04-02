@@ -88,15 +88,15 @@ $(document).ready(function() {
 			$(".hyphens").append("<div>-</div>");
 		}
 	}
-	function playSong() {
-		// var index = bros.broName.indexOf(secretBro);
-		// var audio = new Audio("raven.mp3");
-		// audio.play();
-		var index = bros.broName.indexOf(secretBro);
-		$("iframe#ytplayer").attr("src", broSong[index])
-		$("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").add("autoplay=1"));
-		// $("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").replace("autoplay=0", "autoplay=1"));
-	}
+	// function playSong() {
+	// 	// var index = bros.broName.indexOf(secretBro);
+	// 	// var audio = new Audio("raven.mp3");
+	// 	// audio.play();
+	// 	var index = bros.broName.indexOf(secretBro);
+	// 	$("iframe#ytplayer").attr("src", broSong[index])
+	// 	$("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").add("autoplay=1"));
+	// 	// $("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").replace("autoplay=0", "autoplay=1"));
+	// }
 	function showSongTitle() {
 		var index = bros.broName.indexOf(secretBro);
 		var song = bros.broSongName[index];
@@ -156,7 +156,7 @@ $(document).ready(function() {
 						$('.wins').html(wins);
 						changeImage();
 						changeTagline();
-						playSong();
+						// playSong();
 						showSongTitle();
 						resetBoard();
 					}
@@ -174,7 +174,7 @@ $(document).ready(function() {
 				} else if (!letterInSecret && guessesLeft === 1) { //Check for loss condition
 					changeImage();
 					changeTagline();
-					playSong();
+					// playSong();
 					showSongTitle();
 					resetBoard();
 				}

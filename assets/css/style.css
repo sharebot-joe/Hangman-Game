@@ -3,7 +3,7 @@ html {
 }
 body {
 	height: 100%;
-	/*background: repeating-radial-gradient(circle farthest-corner, #DB2A24 12.5%, #FFF506 37.5%, #7B8DCF 62.5%, #FFF506 87.5%, #DB2A24) fixed;*/
+	background: repeating-radial-gradient(circle farthest-corner, #DB2A24 12.5%, #FFF506 37.5%, #7B8DCF 62.5%, #FFF506 87.5%, #DB2A24) fixed;
 }
 html {
 	font-size: 16px;
@@ -19,7 +19,7 @@ h3 {
 }
 
 .logocontainer {
-	visibility: hidden;
+	/*visibility: hidden;*/
 	width: 380px;
 	height: 210px;
 	background: url('../images/burst.png')  no-repeat  center/100% 50%;
