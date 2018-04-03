@@ -78,7 +78,10 @@ margin: auto
   border-style: ridge;
   border-color: rgba(0, 0, 255, 0.6);
   border-width: 10px;  
- 
+  font-size: 1.2rem;
+}
+.card-block > * {
+	font-size: 1.5rem;
 }
 .card:nth-child(2) .card-block>* {
 	/*height: 40px;*/
@@ -95,18 +98,24 @@ margin: auto
 
 }
 .gameboard div {
-	width: 1.17rem;
-	height: 24px;
+	width: 25px;
+	height: 35px;
 	display: inline-block;
 	position: relative;
+	/*vertical-align: top;*/
+	/*left: 30px;*/
 	margin: 0 5px;
 	padding: 0 5px;
 	background:#fff;
 	font-family: consolas, monospace;
 	font-weight: bold;
-	vertical-align: top;
+	color: #fff;
+	background: transparent;
 }
+
 .hyphens div {
+	width: 25px;
+	height: 35px;
 	display: inline-block;
 	position: relative;
 	/*left: 30px;*/
@@ -115,4 +124,6 @@ margin: auto
 	background:#fff;
 	font-family: consolas, monospace;
 	font-weight: bold;
+	color: #fff;
+	background: transparent;
 }

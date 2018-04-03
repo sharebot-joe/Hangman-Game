@@ -40,7 +40,7 @@ $(document).ready(function() {
 								'assets/images/bowser.png', 
 								'assets/images/yoshi.png', 
 								'assets/images/kirby.png', 
-								'assets/images/mewtwo.png', 
+								'assets/images/falco.png', 
 								'assets/images/ganondorf.png', 
 								'assets/images/zelda.png'],
 		broTagline : ['Pika!', 
@@ -66,7 +66,7 @@ $(document).ready(function() {
 		lettersGuessed = '';
 		lettersMissed = '';
 		$('.your-guesses').empty();
-
+    addKeypressEvent()
 		randomBro();
 		displayGameboard();
 	}
@@ -81,7 +81,8 @@ $(document).ready(function() {
 	function displayGameboard () {
 		$(".gameboard").empty();
 		for (var i = 0; i < secretBro.length; i++) {
-			$(".gameboard").append("<div class=" + i + "></div>");
+			var gameboard =$('<div class=' + i + '></div>')
+			$(".gameboard").append(gameboard);
 		}
 		$(".hyphens").empty();
 		for (var i = 0; i < secretBro.length; i++) {
@@ -89,38 +90,36 @@ $(document).ready(function() {
 		}
 	}
 	// function playSong() {
-	// 	// var index = bros.broName.indexOf(secretBro);
-	// 	// var audio = new Audio("raven.mp3");
-	// 	// audio.play();
-	// 	var index = bros.broName.indexOf(secretBro);
-	// 	$("iframe#ytplayer").attr("src", broSong[index])
-	// 	$("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").add("autoplay=1"));
-	// 	// $("iframe#ytplayer").attr("src", $("iframe#ytplayer").attr("src").replace("autoplay=0", "autoplay=1"));
+	// 	var source = "http://downloads.khinsider.com/game-soundtracks/album/super-mario-bros/01%2520-%2520Super%2520Mario%2520Bros.mp3";
+	// 	var audio = new Audio(); 
+	// 	audio.src = source;
+	// 	// audio.crossOrigin="anonymous"
+	// 	audio.autoplay = true; // add this
+	// 	audio.play();
 	// }
 	function showSongTitle() {
 		var index = bros.broName.indexOf(secretBro);
 		var song = bros.broSongName[index];
 		$(".songtitle").html(song);
 	}
+
+	// Main Program
+
 	//Setting initial gameboard
 	$('.wins').html(wins);
 	$('.guesses-left').html('13');
-	// $('.your-guesses').html('');
-	console.log("Hi there buddy!");
 
 	//Start Game on key press - runs only once
 	$('body').one("keyup", function() {
 		resetBoard();
 		keypresses++
-
 	});
+
 	//Subsequent key presses play the game
-	$('body').on("keyup", function() {
-		console.log(keypresses)
-		if (keypresses > 0) {
+	function addKeypressEvent() {
+		$('body').on("keyup", function() {
 
 			var letter = String.fromCharCode(event.which).toLowerCase();
-			console.log(letter)
 			var chars = "abcdefghijklmnopqrstuvwxyz";
 			var letterPressed = chars.includes(letter);
 			var letterRepeated = lettersGuessed.includes(letter);
@@ -141,24 +140,26 @@ $(document).ready(function() {
 							// Important to set global variables using equal sign for global methods
 							// matchedLetters = matchedLetters.append(letter)
 							secretBroLetters = secretBroLetters.replace(letter, "*")
-							console.log('secretBroLetters= ' + secretBroLetters)
 							lettersGuessed += letter
 							matches++
-							console.log(matches)
-							console.log('lettersGuessed= ' +lettersGuessed)
 
 						}
 
 					}
 					//Check for win condition
 					if (matches === secretBroLetters.length) {
+						matches++
 						wins++
 						$('.wins').html(wins);
 						changeImage();
 						changeTagline();
 						// playSong();
 						showSongTitle();
-						resetBoard();
+						$(".gameboard ." + i).html(letter.toUpperCase())
+						setTimeout(function(){ 
+							resetBoard(); 
+						}, 5000);
+						
 					}
 
 				} else if (!letterInSecret && guessesLeft > 1) {	// When user hits a wrong letter
@@ -168,7 +169,6 @@ $(document).ready(function() {
 					$('.guesses-left').html(guessesLeft);
 					lettersGuessed += letter
 					lettersMissed += letter
-					console.log('lettersMissed= ' + lettersMissed)
 					$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
 
 				} else if (!letterInSecret && guessesLeft === 1) { //Check for loss condition
@@ -179,8 +179,8 @@ $(document).ready(function() {
 					resetBoard();
 				}
 			};  
-		};
-	});
+		});
+	}
 
 	//document ready
 });	
