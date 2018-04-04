@@ -14,49 +14,49 @@ $(document).ready(function() {
 		broName : ['Pikachu', 'Samus', 'Mario', 'Luigi', 'Bowser', 'Yoshi', 'Kirby', 'Falco', 'Ganondorf', 'Zelda'],	
 		//values are URL endings for Youtube links.
 		broSong : ['https://www.youtube.com/watch?v=iYyDbVUWgTI', 
-							'https://www.youtube.com/watch?v=6gWyfQFdMJA', 
-							'https://www.youtube.com/watch?v=8QLGlbJA7C0', 
-							'https://www.youtube.com/watch?v=wjdgxK44ctQ', 
-							'https://www.youtube.com/watch?v=ajY2Ee70vNw', 
-							'https://www.youtube.com/watch?v=nghTrcPBp3s', 
-							'https://www.youtube.com/watch?v=3CS93CdMv_E', 
-							'https://www.youtube.com/watch?v=LpW3DvP-Qe4', 
-							'https://www.youtube.com/watch?v=gmL3xSeAmsw', 
-							'https://www.youtube.com/watch?v=cGufy1PAeTU'],
+					'https://www.youtube.com/watch?v=6gWyfQFdMJA', 
+					'https://www.youtube.com/watch?v=8QLGlbJA7C0', 
+					'https://www.youtube.com/watch?v=wjdgxK44ctQ', 
+					'https://www.youtube.com/watch?v=ajY2Ee70vNw', 
+					'https://www.youtube.com/watch?v=nghTrcPBp3s', 
+					'https://www.youtube.com/watch?v=3CS93CdMv_E', 
+					'https://www.youtube.com/watch?v=LpW3DvP-Qe4', 
+					'https://www.youtube.com/watch?v=gmL3xSeAmsw', 
+					'https://www.youtube.com/watch?v=cGufy1PAeTU'],
 		broSongName : ['Pikachu Song', 
-							'Metroid: Samus Returns OST - Theme of Samus', 
-							'Super Mario World - Overworld Theme (GFM Trap Remix)', 
-							'Luigi\'s Mansion Theme - Super Smash Bros. Brawl', 
-							'Super Mario BOWSER\'S CASTLE (Trap Remix)', 
-							'Yoshi\'s Story: Theme', 
-							'Kirby dream land theme song', 
-							'Super Smash Bros. for Wii U Character Theme Falco', 
-							'Final Battle Against Ganon - The Legend of Zelda: Ocarina of Time', 
-							'Zelda Main Theme Song'],
+						'Metroid: Samus Returns OST - Theme of Samus', 
+						'Super Mario World - Overworld Theme (GFM Trap Remix)', 
+						'Luigi\'s Mansion Theme - Super Smash Bros. Brawl', 
+						'Super Mario BOWSER\'S CASTLE (Trap Remix)', 
+						'Yoshi\'s Story: Theme', 
+						'Kirby dream land theme song', 
+						'Super Smash Bros. for Wii U Character Theme Falco', 
+						'Final Battle Against Ganon - The Legend of Zelda: Ocarina of Time', 
+						'Zelda Main Theme Song'],
 		broImage : ['assets/images/Pikachu.png', 
-								'assets/images/samus.png', 
-								'assets/images/mario.png', 
-								'assets/images/luigi.png', 
-								'assets/images/bowser.png', 
-								'assets/images/yoshi.png', 
-								'assets/images/kirby.png', 
-								'assets/images/mewtwo.png', 
-								'assets/images/ganondorf.png', 
-								'assets/images/zelda.png'],
+					'assets/images/samus.png', 
+					'assets/images/mario.png', 
+					'assets/images/luigi.png', 
+					'assets/images/bowser.png', 
+					'assets/images/yoshi.png', 
+					'assets/images/kirby.png', 
+					'assets/images/mewtwo.png', 
+					'assets/images/ganondorf.png', 
+					'assets/images/zelda.png'],
 		broTagline : ['Pika!', 
-									'Try me!', 
-									'Ohhhh. Mamma Mia!', 
-									'Okey Dokey!', 
-									'Bwah hah hah!', 
-									'T. Yoshisaur Munchakoopas', 
-									'Right Back at Ya!', 
-									'Gee, I\'ve been saved by Fox. How swell.', 
-									'Pathetic little fool!', 
-									'We must win! The fate of Hyrule depends on it!']
+						'Try me!', 
+						'Ohhhh. Mamma Mia!', 
+						'Okey Dokey!', 
+						'Bwah hah hah!', 
+						'T. Yoshisaur Munchakoopas', 
+						'Right Back at Ya!', 
+						'Gee, I\'ve been saved by Fox. How swell.', 
+						'Pathetic little fool!', 
+						'We must win! The fate of Hyrule depends on it!']
 
 	};
 	function randomBro () {
-		secretBro = bros.broName[Math.floor(Math.random() * bros.broName.length)];
+		secretBro = bros.broName[Math.floor(Math.random() * bros.broName.length)].toLowerCase();
 		secretBroLetters = secretBro.toLowerCase();
 	}
 	function resetBoard () {
@@ -81,11 +81,7 @@ $(document).ready(function() {
 	function displayGameboard () {
 		$(".gameboard").empty();
 		for (var i = 0; i < secretBro.length; i++) {
-			$(".gameboard").append("<div class=" + i + "></div>");
-		}
-		$(".hyphens").empty();
-		for (var i = 0; i < secretBro.length; i++) {
-			$(".hyphens").append("<div>-</div>");
+			$(".gameboard").append("<div class=" + i + ">_</div>");
 		}
 	}
 	function playSong() {
