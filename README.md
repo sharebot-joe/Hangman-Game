@@ -1,5 +1,5 @@
 # Super Smash Hangman
-## A 'Super' spin on the classic Hangman!
+**A 'Super' spin on the classic Hangman!
 
 Guess the secret character from Super Smash Bros. before you run out of guesses! 
 
