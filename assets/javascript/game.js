@@ -97,11 +97,11 @@ $(document).ready(function() {
 	// 	audio.autoplay = true; // add this
 	// 	audio.play();
 	// }
-	function showSongTitle() {
-		var index = bros.broName.indexOf(secretBro);
-		var song = bros.broSongName[index];
-		$(".songtitle").html(song);
-	}
+	// function showSongTitle() {
+	// 	var index = bros.broName.indexOf(secretBro);
+	// 	var song = bros.broSongName[index];
+	// 	$(".songtitle").html(song);
+	// }
 
 	// Main Program
 
@@ -151,10 +151,11 @@ $(document).ready(function() {
 						matches++
 						wins++
 						$('.wins').html(wins);
+						$('body').off("keyup")
 						changeImage();
 						changeTagline();
 						// playSong();
-						showSongTitle();
+						// showSongTitle();
 						$(".gameboard ." + i).html(letter.toUpperCase())
 						setTimeout(function(){ 
 							resetBoard(); 
@@ -172,10 +173,11 @@ $(document).ready(function() {
 					$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
 
 				} else if (!letterInSecret && guessesLeft === 1) { //Check for loss condition
+					$('body').off("keyup")
 					changeImage();
 					changeTagline();
 					// playSong();
-					showSongTitle();
+					// showSongTitle();
 					resetBoard();
 				}
 			};  
