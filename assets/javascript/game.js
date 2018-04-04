@@ -66,16 +66,23 @@ $(document).ready(function() {
 		lettersGuessed = '';
 		lettersMissed = '';
 		$('.your-guesses').empty();
-    addKeypressEvent()
+        addKeypressEvent()
 		randomBro();
 		displayGameboard();
 	}
 	function changeImage() {
-		var index = bros.broName.indexOf(secretBro);
+		var upperCaseNames = bros.broName.map(function(value) {
+	      return value.toUpperCase();
+	    });
+		var index = upperCaseNames.indexOf(secretBro.toUpperCase());
+
 		$("#bro-image").attr("src",bros.broImage[index]);
 	}
 	function changeTagline() {
-		var index = bros.broName.indexOf(secretBro);
+		var upperCaseNames = bros.broName.map(function(value) {
+	      return value.toUpperCase();
+	    });
+		var index = upperCaseNames.indexOf(secretBro.toUpperCase());
 		$(".tagline").html(bros.broTagline[index]);
 	}
 	function displayGameboard () {
@@ -142,13 +149,11 @@ $(document).ready(function() {
 							secretBroLetters = secretBroLetters.replace(letter, "*")
 							lettersGuessed += letter
 							matches++
-
 						}
 
 					}
 					//Check for win condition
 					if (matches === secretBroLetters.length) {
-						matches++
 						wins++
 						$('.wins').html(wins);
 						$('body').off("keyup")
@@ -156,7 +161,7 @@ $(document).ready(function() {
 						changeTagline();
 						// playSong();
 						// showSongTitle();
-						$(".gameboard ." + i).html(letter.toUpperCase())
+						// $(".gameboard ." + i).html(letter.toUpperCase())
 						setTimeout(function(){ 
 							resetBoard(); 
 						}, 5000);
