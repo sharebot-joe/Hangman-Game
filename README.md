@@ -1,22 +1,22 @@
 # Super Hangman
 
-[Play Game](https://sharebot-joe.github.io/Hangman-Game/ "super hangman")
+[Play Game](https://sharebot-joe.github.io/super-hangman/ "super hangman")
 
 **A 'super' spin on the classic hangman game**
 
-Guess the secret character's name before you run out of guesses! 
+Guess the character's super name before you run out of guesses! 
 
-Click the link above to get started.
+Click on the link above to start.
 
 **How to play:**
 
 Begin by pressing any key. Your goal is to guess the secret character's name one letter at a time. You won't be penalized for repeated guesses and there is no timer.
 
-Current Word: The name of the secret character
+*Current Word*: Secret character's name
 
-Letters Guessed: Keeps track of your letters guessed
+*Letters Guessed*: Shows your previous guesses
 
-Guesses Remaining: The number of guesses remaining
+*Guesses Remaining*: Number of guesses remaining
 
 Good luck!
 
