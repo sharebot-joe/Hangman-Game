@@ -4,7 +4,7 @@
 
 **A 'super' spin on the classic hangman game**
 
-Guess the character's super name before you run out of guesses! 
+Uncover the secret character's name before you run out of guesses! 
 
 Click on the link above to start.
 
