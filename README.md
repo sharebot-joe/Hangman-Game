@@ -1,20 +1,20 @@
-# Super Smash Hangman
+# Super Hangman
 
-[Project Link](https://sharebot-joe.github.io/Hangman-Game/ "Super Smash Hangman")
+[Play Game](https://sharebot-joe.github.io/Hangman-Game/ "super hangman")
 
-**A 'Super' spin on the classic Hangman game!**
+**A 'super' spin on the classic hangman game**
 
-Guess the secret character from Super Smash Bros. before you run out of guesses! 
+Guess the secret character's name before you run out of guesses! 
 
-Click the Github Pages link above to get started.
+Click the link above to get started.
 
 **How to play:**
 
-Begin by pressing any key. Your goal is to guess the secret character's name by entering letters on your keyboard. You won't be penalized for repeated guesses, and there is no timer.
+Begin by pressing any key. Your goal is to guess the secret character's name one letter at a time. You won't be penalized for repeated guesses and there is no timer.
 
 Current Word: The name of the secret character
 
-Letters Already Guessed: Keeps track of your letters guessed
+Letters Guessed: Keeps track of your letters guessed
 
 Guesses Remaining: The number of guesses remaining
 
