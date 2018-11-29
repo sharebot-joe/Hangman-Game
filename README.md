@@ -12,11 +12,11 @@ Click on the link above to start.
 
 Begin by pressing any key. Your goal is to guess the secret character's name one letter at a time. You won't be penalized for repeated guesses and there is no timer.
 
-*Current Word*: Secret character's name
+**Current Word**:  Secret character's name
 
-*Letters Guessed*: Shows your previous guesses
+**Letters Guessed**:  Shows your previous guesses
 
-*Guesses Remaining*: Number of guesses remaining
+**Guesses Remaining**:  Number of guesses remaining
 
 Good luck!
 
