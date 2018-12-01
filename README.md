@@ -16,9 +16,9 @@ Begin by pressing any key. Your goal is to guess the secret character's name one
 
 **Wins**:  Total wins
 
-**Letters Guessed**:  Your previous guesses
+**Guesses Left**:  No. of guesses remaining
 
-**Guesses Remaining**:  No. of guesses remaining
+**Letters Guessed**:  Your previous guesses
 
 Good luck!
 
