@@ -20,4 +20,4 @@ Begin by pressing any key. Your goal is to guess the secret character's name one
 
 Good luck!
 
-<img src="assets/images/screenshot.JPG" alt="alt text" width="500">
+<img src="assets/images/screenshot.png" alt="alt text" width="500">
