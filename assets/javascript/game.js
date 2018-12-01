@@ -1,193 +1,173 @@
 $(document).ready(function() {
 
-	var wins = 0;
-	var guessesLeft = '';
-	var lettersGuessed = '';
-	var lettersMissed = '';
-	var secretBro = '';
-	var secretBroLetters = '';
-	var keypresses = 0;
-	var matches = 0;
+  var wins = 0;
+  var guessesLeft = '';
+  var lettersGuessed = '';
+  var secretBro = '';
+  var secretBroLetters = '';
+  var matchedLetters = 0;
+  var bros = {
+    broName: ['Pikachu', 'Samus', 'Mario', 'Luigi', 'Bowser', 'Yoshi', 'Kirby', 'Falco', 'Ganondorf', 'Zelda'],
+    //values are URL endings for Youtube links.
+    broSong: ['https://www.youtube.com/watch?v=iYyDbVUWgTI',
+      'https://www.youtube.com/watch?v=6gWyfQFdMJA',
+      'https://www.youtube.com/watch?v=8QLGlbJA7C0',
+      'https://www.youtube.com/watch?v=wjdgxK44ctQ',
+      'https://www.youtube.com/watch?v=ajY2Ee70vNw',
+      'https://www.youtube.com/watch?v=nghTrcPBp3s',
+      'https://www.youtube.com/watch?v=3CS93CdMv_E',
+      'https://www.youtube.com/watch?v=LpW3DvP-Qe4',
+      'https://www.youtube.com/watch?v=gmL3xSeAmsw',
+      'https://www.youtube.com/watch?v=cGufy1PAeTU'
+    ],
+    broSongName: ['Pikachu Song',
+      'Metroid: Samus Returns OST - Theme of Samus',
+      'Super Mario World - Overworld Theme (GFM Trap Remix)',
+      'Luigi\'s Mansion Theme - Super Smash Bros. Brawl',
+      'Super Mario BOWSER\'S CASTLE (Trap Remix)',
+      'Yoshi\'s Story: Theme',
+      'Kirby dream land theme song',
+      'Super Smash Bros. for Wii U Character Theme Falco',
+      'Final Battle Against Ganon - The Legend of Zelda: Ocarina of Time',
+      'Zelda Main Theme Song'
+    ],
+    broImage: ['assets/images/Pikachu.png',
+      'assets/images/samus.png',
+      'assets/images/mario.png',
+      'assets/images/luigi.png',
+      'assets/images/bowser.png',
+      'assets/images/yoshi.png',
+      'assets/images/kirby.png',
+      'assets/images/falco.png',
+      'assets/images/ganondorf.png',
+      'assets/images/zelda.png'
+    ],
+    broTagline: ['Pika!',
+      'Try me!',
+      'Ohhhh. Mamma Mia!',
+      'Okey Dokey!',
+      'Bwah hah hah!',
+      'T. Yoshisaur Munchakoopas',
+      'Right Back at Ya!',
+      'Gee, I\'ve been saved by Fox. How swell.',
+      'Pathetic little fool!',
+      'We must win! The fate of Hyrule depends on it!'
+    ]
+  };
 
-	var bros = {
-		
-		broName : ['Pikachu', 'Samus', 'Mario', 'Luigi', 'Bowser', 'Yoshi', 'Kirby', 'Falco', 'Ganondorf', 'Zelda'],	
-		//values are URL endings for Youtube links.
-		broSong : ['https://www.youtube.com/watch?v=iYyDbVUWgTI', 
-					'https://www.youtube.com/watch?v=6gWyfQFdMJA', 
-					'https://www.youtube.com/watch?v=8QLGlbJA7C0', 
-					'https://www.youtube.com/watch?v=wjdgxK44ctQ', 
-					'https://www.youtube.com/watch?v=ajY2Ee70vNw', 
-					'https://www.youtube.com/watch?v=nghTrcPBp3s', 
-					'https://www.youtube.com/watch?v=3CS93CdMv_E', 
-					'https://www.youtube.com/watch?v=LpW3DvP-Qe4', 
-					'https://www.youtube.com/watch?v=gmL3xSeAmsw', 
-					'https://www.youtube.com/watch?v=cGufy1PAeTU'],
-		broSongName : ['Pikachu Song', 
-						'Metroid: Samus Returns OST - Theme of Samus', 
-						'Super Mario World - Overworld Theme (GFM Trap Remix)', 
-						'Luigi\'s Mansion Theme - Super Smash Bros. Brawl', 
-						'Super Mario BOWSER\'S CASTLE (Trap Remix)', 
-						'Yoshi\'s Story: Theme', 
-						'Kirby dream land theme song', 
-						'Super Smash Bros. for Wii U Character Theme Falco', 
-						'Final Battle Against Ganon - The Legend of Zelda: Ocarina of Time', 
-						'Zelda Main Theme Song'],
-		broImage : ['assets/images/Pikachu.png', 
-								'assets/images/samus.png', 
-								'assets/images/mario.png', 
-								'assets/images/luigi.png', 
-								'assets/images/bowser.png', 
-								'assets/images/yoshi.png', 
-								'assets/images/kirby.png', 
-								'assets/images/falco.png', 
-								'assets/images/ganondorf.png', 
-								'assets/images/zelda.png'],
-		broTagline : ['Pika!', 
-						'Try me!', 
-						'Ohhhh. Mamma Mia!', 
-						'Okey Dokey!', 
-						'Bwah hah hah!', 
-						'T. Yoshisaur Munchakoopas', 
-						'Right Back at Ya!', 
-						'Gee, I\'ve been saved by Fox. How swell.', 
-						'Pathetic little fool!', 
-						'We must win! The fate of Hyrule depends on it!']
+  function randomBro() {
+    secretBro = bros.broName[Math.floor(Math.random() * bros.broName.length)];
+    secretBroLetters = secretBro.toLowerCase();
+    secretBroIndex = bros.broName.indexOf(secretBro);
+  }
 
-	};
-	function randomBro () {
-		secretBro = bros.broName[Math.floor(Math.random() * bros.broName.length)].toLowerCase();
-		secretBroLetters = secretBro.toLowerCase();
-	}
-	function resetBoard () {
-		guessesLeft = 13;
-		$('.guesses-left').html(guessesLeft);
-		matches = 0;
-		lettersGuessed = '';
-		lettersMissed = '';
-		$('.your-guesses').empty();
-        addKeypressEvent()
-		randomBro();
-		displayGameboard();
-	}
-	function changeImage() {
-		var upperCaseNames = bros.broName.map(function(value) {
-	      return value.toUpperCase();
-	    });
-		var index = upperCaseNames.indexOf(secretBro.toUpperCase());
+  function changeImage() {
+    $(".bro-image").attr("src", bros.broImage[secretBroIndex]);
+  }
 
-		$("#bro-image").attr("src",bros.broImage[index]);
-	}
-	function changeTagline() {
-		var upperCaseNames = bros.broName.map(function(value) {
-	      return value.toUpperCase();
-	    });
-		var index = upperCaseNames.indexOf(secretBro.toUpperCase());
-		$(".tagline").html(bros.broTagline[index]);
-	}
-	function displayGameboard () {
-		$(".gameboard").empty();
-		for (var i = 0; i < secretBro.length; i++) {
-			var gameboard =$('<div class=' + i + '></div>')
-			$(".gameboard").append(gameboard);
-		}
-		$(".hyphens").empty();
-		for (var i = 0; i < secretBro.length; i++) {
-			$(".hyphens").append("<div>-</div>");
-		}
-	}
-	// function playSong() {
-	// 	var source = "http://downloads.khinsider.com/game-soundtracks/album/super-mario-bros/01%2520-%2520Super%2520Mario%2520Bros.mp3";
-	// 	var audio = new Audio(); 
-	// 	audio.src = source;
-	// 	// audio.crossOrigin="anonymous"
-	// 	audio.autoplay = true; // add this
-	// 	audio.play();
-	// }
-	// function showSongTitle() {
-	// 	var index = bros.broName.indexOf(secretBro);
-	// 	var song = bros.broSongName[index];
-	// 	$(".songtitle").html(song);
-	// }
+  function changeTagline() {
+    $(".tagline").html(bros.broTagline[secretBroIndex]);
+  }
 
-	// Main Program
+  function resetGame() {
+    $(document).one("keyup", function() {
+      lettersGuessed = '';
+      $('#letters-guessed .data').empty();
+      //Setting initial gameboard
+      $('#wins .data').html(wins);
+      $(".bro-image").attr("src", "assets/images/questionmarkicon.png");
+      $(".tagline").html("");
+      randomBro();
+      $('.user-prompt').html('Guess the secret word!');
+      startGame();
+    });
+  }
+  function initializeGameboard() {
+    $(".gameboard").empty();
+    for (var i = 0; i < secretBro.length; i++) {
+    $(".gameboard").append($('<div class=' + i + '>-</div>'));
+    }
+  }
 
-	//Setting initial gameboard
-	$('.wins').html(wins);
-	$('.guesses-left').html('13');
+  function startGame() {
+    guessesLeft = 10;
+    $('#guesses-left .data').html(guessesLeft);
+    initializeGameboard();
+    // key press begins the game
+    setTimeout(function() {
+		  $(document).keyup(keyUpFunc);
+		}, 600);
+  }
 
-	//Start Game on key press - runs only once
-	$('body').one("keyup", function() {
-		resetBoard();
-		keypresses++
-	});
+  function keyUpFunc(event) {
+    var inp = String.fromCharCode(event.which).toLowerCase();
 
-	//Subsequent key presses play the game
-	function addKeypressEvent() {
-		$('body').on("keyup", function() {
+    // Check if input is a letter
+    if (/[a-z]/.test(inp)) {
 
-			var letter = String.fromCharCode(event.which).toLowerCase();
-			var chars = "abcdefghijklmnopqrstuvwxyz";
-			var letterPressed = chars.includes(letter);
-			var letterRepeated = lettersGuessed.includes(letter);
-			var letterInSecret = secretBroLetters.includes(letter);
-			
-			//When user hits an alphabet letter not repeated
-			if (letterPressed && !letterRepeated) {
+      // Check if inputted letter has been previously guessed
+      if (!lettersGuessed.includes(inp)) {
+        lettersGuessed += inp
 
-				// When user hits a letter contained in the secret word
-				if (letterInSecret) {
+        // Check if inputted letter is in secret word
+        if (secretBroLetters.includes(inp)) {
 
-					for (var i = 0; i < secretBroLetters.length; i++) {
+          // Loop through secret word
+          for (var i = 0; i < secretBroLetters.length; i++) {
+            if (inp === secretBroLetters.charAt(i)) {
+              $(".gameboard ." + i).html(inp.toUpperCase())
+              matchedLetters++
+            }
+          }
+          //Check for win condition
+          if (matchedLetters === secretBroLetters.length) {
+            matchedLetters = 0;
+            wins++
+            $('#wins .data').html(wins);
+            $('.user-prompt').html(`You won! You guessed ${secretBro}!` + '<br>Press any key to play again!').css('display', 'none');
+            $('.user-prompt').show("bounce", {
+              times: 2
+            }, 300);
+            $(document).unbind("keyup", keyUpFunc);
+            changeImage();
+            changeTagline();
+            setTimeout(function() {
+						  resetGame();
+						}, 4000);
+            return
+          }
+          $('.user-prompt').html('Yes!').css('display', 'none');
+          $('.user-prompt').show("bounce", {
+            times: 2
+          }, 300);
+        } else {
+          guessesLeft--;
+          $('#guesses-left .data').html(guessesLeft);
+          $('#letters-guessed .data').html(lettersGuessed.toUpperCase().split('').join(' '));
 
-						if (letter === secretBroLetters.charAt(i)) {
-							// $( "input[id][name$='man']" ).val( "only this one" );\
-							$(".gameboard ." + i).html(letter.toUpperCase())
+          // Check for end game condition
+          if (guessesLeft < 1) {
+            matchedLetters = 0;
+            $(document).unbind("keyup", keyUpFunc);
+            $('.user-prompt').html(`You lost!  The correct answer was ${secretBro}.` + '<br>Press any key to play again!').css('display', 'none');
+            $('.user-prompt').show("bounce", {
+              times: 2
+            }, 300);
+            changeImage();
+            changeTagline();
+            setTimeout(function() {
+						  resetGame();
+						}, 4000);
+            return
+          }
 
-							// Important to set global variables using equal sign for global methods
-							// matchedLetters = matchedLetters.append(letter)
-							secretBroLetters = secretBroLetters.replace(letter, "*")
-							lettersGuessed += letter
-							matches++
-						}
-
-					}
-					//Check for win condition
-					if (matches === secretBroLetters.length) {
-						wins++
-						$('.wins').html(wins);
-						$('body').off("keyup")
-						changeImage();
-						changeTagline();
-						// playSong();
-						// showSongTitle();
-						// $(".gameboard ." + i).html(letter.toUpperCase())
-						setTimeout(function(){ 
-							resetBoard(); 
-						}, 5000);
-						
-					}
-
-				} else if (!letterInSecret && guessesLeft > 1) {	// When user hits a wrong letter
-
-					//Process incorrect guess
-					guessesLeft--;
-					$('.guesses-left').html(guessesLeft);
-					lettersGuessed += letter
-					lettersMissed += letter
-					$('.your-guesses').html(lettersMissed.toUpperCase().split('').join(' '));
-
-				} else if (!letterInSecret && guessesLeft === 1) { //Check for loss condition
-					$('body').off("keyup")
-					changeImage();
-					changeTagline();
-					// playSong();
-					// showSongTitle();
-					resetBoard();
-				}
-			};  
-		});
-	}
-
-	//document ready
-});	
+          $('.user-prompt').html('Sorry, guess again!').css('display', 'none');
+          $('.user-prompt').show("shake", {
+            times: 2
+          }, 300);
+        }
+      }
+    }
+  }
+  resetGame()
+});

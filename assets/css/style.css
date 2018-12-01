@@ -12,7 +12,7 @@ h1, h2, h3, p {
 	color: #fff;
 }
 h3 {
-	font-size: 1.3rem;
+	font-size: 1.7rem;
 }
 .row:first-of-type {
 	height: 180px;
@@ -66,36 +66,63 @@ margin: auto
   -webkit-text-stroke-color: black;
 	font-size: 3rem;
 }
+.bro-image {
+	height: 100%;
+  width: 100%;
+  max-width: 200px;
+  object-fit: contain;
+}
+.game-container {
+	width: 100%;
+	margin: 0 auto;
+}
 .card {
+	margin: 0 auto;
+	padding: 15px 35px;
+	float: left;
 	background: none;
 	border: none;
 }
 .card-block {
-	margin: 0 auto;
-	padding: 15px;
-	width: 400px;
-  background-color: rgba(0,0,0,0.7);
+	padding: 35px;
+	background-color: rgba(0,0,0,0.7);
   border-style: ridge;
   border-color: rgba(0, 0, 255, 0.6);
-  border-width: 10px;  
-  font-size: 1.2rem;
+  border-width: 10px;
 }
-.card-block > * {
-	font-size: 1.5rem;
+.card-block > div {
+    margin: 0 auto !important;   /* To keep text animations correctly aligned */
 }
-.card:nth-child(2) .card-block>* {
-	/*height: 40px;*/
-	/*border: 1px solid green;*/
+.card1 {
+	width: 40%;
 }
-.value {
+.card2 {
+	width:60%;
+}
+#wins, #guesses-left, #letters-guessed {
+	display: block;
+}
+#wins .label,
+#guesses-left .label,
+#letters-guessed .label {
+	float: left;
+	width: 60%;
+	text-align: left;
+}
+.data {
 	display: inline-block;
-	height: 30px;
-	background:#fff;
-	font-weight: bold;
+	width: 40%;
+	font-size: 1.7rem;
+	color: white;
+	background: none;
+	text-align: right;
 }
+
 .gameboard {
 	background: none;
-
+  font-size: 1.7rem;
+  	color: white;
+	background: none;
 }
 .gameboard div {
 	width: 25px;
@@ -111,19 +138,12 @@ margin: auto
 	font-weight: bold;
 	color: #fff;
 	background: transparent;
+	font-size: 2rem;
 }
 
-.hyphens div {
-	width: 25px;
-	height: 35px;
+.user-prompt {
 	display: inline-block;
-	position: relative;
-	/*left: 30px;*/
-	margin: 0 5px;
-	padding: 0 5px;
-	background:#fff;
-	font-family: consolas, monospace;
-	font-weight: bold;
-	color: #fff;
-	background: transparent;
+	width: 100%;
+	text-align: center;
 }
+

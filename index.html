@@ -1,74 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-	<title>Super Smash Hangman Game</title>
-	<meta charset="UTF-8">
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Creepster|Oswald:300,400" rel="stylesheet">
-</head>
-<body>
-	<!-- html -->
-	<div class="container-fluid">
-		<div class="row text-center">
-			<div class="col-lg-12 ">
-
-					<div class="logocontainer">
-						<span class="superlogo">SUPER</span>
-						<p class="smashlogo">SMASH</p>
-						<span class="hangmangamelogo">HANGMAN</span>
-					</div>
-					
-			</div>
-		</div>
-		<div class="row text-center">
-			<div class="col-lg-12 ">
-
-					<div class="songtitle">
-					</div>
-					<div class='audio'>
-					</div>
-					
-			</div>
-		</div>
-		<div class="row text-center mb-5 pb-5">
-			<div class="col-lg-8 mx-auto">
-				<div class="card-deck">
-				  <div class="card">
-				    <div class="card-block">
-				    	<img id="bro-image" class=" mb-5" width="200" src="assets/images/questionmarkicon.png">
-				      <p class="tagline"></p>
-				    </div>
-				  </div>
-				  <div class="card">
-				    <div class="card-block">
-				      <h3 class="my-2 mb-4">Press any key to get started!</h3>
-							<h3 class="my-2">Wins</h3>
-							<div class="value wins my-2"></div>
-							<h3 class="my-2">Current Word</h3>
-							<div class="gameboard my-2">
-								<!-- Create divs here with JS for each letter here-->
-							</div>
-							<div class="hyphens my-2 mb-4"><!--Create divs here with JS with hyphens for each character-->
-								
-							</div>
-			
-
-							<h3 class="my-2">Guesses Remaining</h3>
-							<div class="value guesses-left my-2"></div>
-							<h3 class="my-2">Letters Already Guessed</h3>
-							<div class="value your-guesses my-2"></div>
-				    </div>
-				  </div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/javascript/game.js"></script>
-	
-</body>
+  <head>
+    <title>
+      Super Smash Hangman Game
+    </title>
+    <meta charset="utf-8">
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+          <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Creepster|Oswald:300,400" rel="stylesheet">
+          </link>
+        </link>
+      </link>
+    </meta>
+  </head>
+  <body>
+    <!-- html -->
+    <div class="container-fluid">
+      <div class="row text-center">
+        <div class="col-lg-12 ">
+          <div class="logocontainer">
+            <span class="superlogo">
+              SUPER
+            </span>
+            <p class="smashlogo">
+              SMASH
+            </p>
+            <span class="hangmangamelogo">
+              HANGMAN
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-12 ">
+          <div class="songtitle">
+          </div>
+          <div class="audio">
+          </div>
+        </div>
+      </div>
+      <div class="row text-center mb-5 pb-5">
+        <div class="col-md-12 col-lg-8 mx-auto">
+          <div class="game-container">
+            <div class="card card1">
+              <div class="card-block">
+                <img class=" mb-5 bro-image" src="assets/images/questionmarkicon.png">
+                  <p class="tagline">
+                  </p>
+                </img>
+              </div>
+            </div>
+            <div class="card card2">
+              <div class="card-block col-lg-12">
+                <h3 class="user-prompt my-2 mb-4">
+                	Press any key to begin!
+                </h3>
+                <h3 class="label my-2">
+                  Current Word
+                </h3>
+                <div class="gameboard my-2">
+                </div>
+                <div id="wins" class="col-lg-10">
+                  <h3 class="label my-2">
+                    Wins
+                  </h3>
+                  <h3 class="data my-2">
+                  </h3>
+                </div>
+                <div id="guesses-left" class="col-lg-10">
+                  <h3 class="label my-2">
+                    Guesses Left
+                  </h3>
+                  <h3 class="data my-2">
+                  </h3>
+                </div>
+                <div id="letters-guessed" class="col-lg-10">
+                  <h3 class="label my-2">
+                    Letters Guessed
+                  </h3>
+                  <h3 class="data my-2">
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js">
+    </script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js">
+    </script>
+    <script src="assets/javascript/game.js" type="text/javascript">
+    </script>
+  </body>
 </html>
