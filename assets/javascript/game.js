@@ -82,10 +82,11 @@ $(document).ready(function() {
       startGame();
     });
   }
+
   function initializeGameboard() {
     $(".gameboard").empty();
     for (var i = 0; i < secretBro.length; i++) {
-    $(".gameboard").append($('<div class=' + i + '>-</div>'));
+      $(".gameboard").append($('<div class=' + i + '>-</div>'));
     }
   }
 
@@ -95,8 +96,8 @@ $(document).ready(function() {
     initializeGameboard();
     // key press begins the game
     setTimeout(function() {
-		  $(document).keyup(keyUpFunc);
-		}, 600);
+      $(document).keyup(keyUpFunc);
+    }, 600);
   }
 
   function keyUpFunc(event) {
@@ -132,8 +133,8 @@ $(document).ready(function() {
             changeImage();
             changeTagline();
             setTimeout(function() {
-						  resetGame();
-						}, 4000);
+              resetGame();
+            }, 4000);
             return
           }
           $('.user-prompt').html('Yes!').css('display', 'none');
@@ -156,8 +157,8 @@ $(document).ready(function() {
             changeImage();
             changeTagline();
             setTimeout(function() {
-						  resetGame();
-						}, 4000);
+              resetGame();
+            }, 4000);
             return
           }
 
